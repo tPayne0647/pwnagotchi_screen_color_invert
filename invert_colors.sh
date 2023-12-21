@@ -15,4 +15,5 @@ else
     sed -i 's/BLACK = 0xff/BLACK = 0x00/' "$view_file"
 fi
 
+# Restart to refresh screen colors
 touch /root/.pwnagotchi-auto && systemctl restart pwnagotchi

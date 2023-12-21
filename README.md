@@ -1,10 +1,10 @@
-# Pwnagotchi Screen Inversion Scripts
+# Pwnagotchi w/ Waveshare V3 & Pisugar 2/3 Screen Inversion Scripts
 
 ## Overview
 This repository contains two Bash scripts for Pwnagotchi devices equipped with a Waveshare V3 screen and a PiSugar 2 or 3 battery. These scripts enable users to invert the screen colors of their Pwnagotchi, on the go, by pressing or holding a button on the PiSugar battery.
 
 ## Prerequisites
-- Pwnagotchi device
+- Configured Pwnagotchi device
 - Waveshare V3 screen
 - PiSugar 2 or 3 battery
 
