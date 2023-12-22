@@ -3,8 +3,18 @@
 # Path to the view.py file
 view_file="/usr/local/lib/python3.7/dist-packages/pwnagotchi/ui/view.py"
 
-# Backup the original view.py file
-cp "$view_file" "$view_file.bak"
+# Backup file name
+backup_count=1
+backup_file="${view_file}.bak$backup_count"
+
+# Keep incrementing backup_count until we find a free name
+while [ -f "$backup_file" ]; do
+    backup_count=$((backup_count + 1))
+    backup_file="${view_file}.bak$backup_count"
+done
+
+# Backup the file and preserve timestamps
+cp -p "$view_file" "$backup_file"
 
 # Edit the view.py file to invert the colors
 if grep -q "WHITE = 0xff" "$view_file" && grep -q "BLACK = 0x00" "$view_file"; then
