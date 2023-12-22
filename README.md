@@ -45,6 +45,7 @@ Press the configured button on your PiSugar battery to invert the screen colors 
 ## Notes
 - The `invert_colors.sh` script creates a backup of the original `view.py` file before making changes.
 - Ensure that your Pwnagotchi and PiSugar are correctly set up.
+- The log file can be found in the project directory as `invert_colors.log` for troubleshooting.
 
 ## Contributing
 Feel free to fork this repository and submit pull requests with improvements or fixes.
