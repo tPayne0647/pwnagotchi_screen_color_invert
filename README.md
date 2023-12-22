@@ -32,7 +32,7 @@ To use this script with your PiSugar battery, follow these steps:
 3. Paste `sudo /home/pi/pwnagotchi_screen_color_invert/invert_colors.sh` to the desired button press.
 
 ## Usage
-Press the configured button on your PiSugar battery to invert the screen colors of your Pwnagotchi. It will restart after a few seconds and will come back up with the colors inverted. Press the button again to restore the original colors. 
+Press the configured button on your PiSugar battery to invert the screen colors of your Pwnagotchi. It will restart after a few seconds and will come back up with the colors inverted. Press the button again to restore the original colors.
 
 ## Notes
 - Ensure that your Pwnagotchi, PiSugar and Waveshare screen are correctly set up before running the scripts.
