@@ -20,7 +20,8 @@ log() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" >> "$log_file"
 }
 
-log "Script started"
+log "🟢 Script started 🟢"
+log "----------------------------------------------------------"
 
 # Path to the view.py file
 view_file="/usr/local/lib/python3.7/dist-packages/pwnagotchi/ui/view.py"
@@ -56,4 +57,5 @@ touch /root/.pwnagotchi-auto && systemctl restart pwnagotchi
 log "Pwnagotchi service restarted."
 
 # Log script completion
-log "Script finished"
+log "🏁 Script finished 🏁"
+log "----------------------------------------------------------"
