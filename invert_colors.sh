@@ -28,18 +28,16 @@ view_file="/usr/local/lib/python3.7/dist-packages/pwnagotchi/ui/view.py"
 log "View file: $view_file"
 
 # Backup file name
-backup_count=1
-backup_file="${view_file}.bak$backup_count"
+backup_file="${view_file}.bak"
 
-# Keep incrementing backup_count until we find a free name
-while [ -f "$backup_file" ]; do
-    backup_count=$((backup_count + 1))
-    backup_file="${view_file}.bak$backup_count"
-done
-
-# Backup the view.py file and preserve timestamps
-cp -p "$view_file" "$backup_file"
-log "Backup created: $backup_file"
+# Check if backup already exists
+if [ ! -f "$backup_file" ]; then
+    # Backup the view.py file and preserve timestamps
+    cp -p "$view_file" "$backup_file"
+    log "Backup created: $backup_file"
+else
+    log "Backup already exists: $backup_file"
+fi
 
 # Edit the view.py file to invert the colors
 if grep -q "WHITE = 0xff" "$view_file" && grep -q "BLACK = 0x00" "$view_file"; then
