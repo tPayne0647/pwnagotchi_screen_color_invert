@@ -1,5 +1,14 @@
 #!/bin/bash
 
+# invert_colors.sh
+# Author: tPayne0647
+# License: MIT License
+# Contribution: Contributions are welcome!
+# Please see https://github.com/tPayne0647/pwnagotchi_screen_color_invert
+
+# This script works by replacing the view.py file with a modified version and
+# restarting the pwnagotchi to refresh the colors of the screen.
+
 # Determine script directory
 SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 
@@ -28,7 +37,7 @@ while [ -f "$backup_file" ]; do
     backup_file="${view_file}.bak$backup_count"
 done
 
-# Backup the file and preserve timestamps
+# Backup the view.py file and preserve timestamps
 cp -p "$view_file" "$backup_file"
 log "Backup created: $backup_file"
 
@@ -43,7 +52,7 @@ else
     log "Inverted colors to BLACK"
 fi
 
-# Restart to refresh screen colors
+# Restart pwnagotchi to refresh screen colors
 touch /root/.pwnagotchi-auto && systemctl restart pwnagotchi
 log "Pwnagotchi service restarted."
 
