@@ -21,7 +21,7 @@ log() {
 }
 
 log "🟢 Script started 🟢"
-log "----------------------------------------------------------"
+log "----------------------"
 
 # Path to the view.py file
 view_file="/usr/local/lib/python3.7/dist-packages/pwnagotchi/ui/view.py"
@@ -58,4 +58,4 @@ log "Pwnagotchi service restarted."
 
 # Log script completion
 log "🏁 Script finished 🏁"
-log "----------------------------------------------------------"
+log "----------------------"
