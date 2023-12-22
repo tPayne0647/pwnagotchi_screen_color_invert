@@ -27,7 +27,7 @@ chmod +x invert_colors.sh
 ### Configuring PiSugar
 To use this script with your PiSugar battery, follow these steps:
 
-1. Access the PiSugar Web GUI on your device ` http://<your raspberry ip>:8421`
+1. Access the PiSugar Web GUI on your device ` http://<your pwnagotchi ip>:8421`
 2. Navigate to the *Custom Button Function* section where you can assign actions to button presses.
 3. Paste `sudo /home/pi/pwnagotchi_screen_color_invert/invert_colors.sh` to the desired button press.
 
