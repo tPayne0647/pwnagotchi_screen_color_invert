@@ -29,7 +29,6 @@ log "View file: $view_file"
 # Backup file name
 backup_count=1
 backup_file="${view_file}.bak$backup_count"
-log "Backup count: $backup_count"
 
 # Keep incrementing backup_count until we find a free name
 while [ -f "$backup_file" ]; do
@@ -45,15 +44,16 @@ log "Backup created: $backup_file"
 if grep -q "WHITE = 0xff" "$view_file" && grep -q "BLACK = 0x00" "$view_file"; then
     sed -i 's/WHITE = 0xff/WHITE = 0x00/' "$view_file"
     sed -i 's/BLACK = 0x00/BLACK = 0xff/' "$view_file"
-    log "Inverted colors to WHITE"
+    log "Inverted colors to BLACK"
 else
     sed -i 's/WHITE = 0x00/WHITE = 0xff/' "$view_file"
     sed -i 's/BLACK = 0xff/BLACK = 0x00/' "$view_file"
-    log "Inverted colors to BLACK"
+    log "Inverted colors to WHITE"
 fi
 
 # Restart pwnagotchi to refresh screen colors
 touch /root/.pwnagotchi-auto && systemctl restart pwnagotchi
 log "Pwnagotchi service restarted."
 
+# Log script completion
 log "Script finished"
