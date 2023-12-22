@@ -1,2 +1,2 @@
 #!/bin/bash
-sudo /home/pi/invert_colors.sh
+sudo /home/pi/pwnagotchi_screen_color_invert/invert_colors.sh
