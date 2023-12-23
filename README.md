@@ -42,6 +42,10 @@ Press the configured button on your PiSugar battery to invert the screen colors 
 ## Contributing
 Feel free to fork this repository and submit pull requests with improvements or fixes.
 
+## To-Do
+- [ ] Develop into plugin?
+- [ ] Test on other Waveshare versions.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
