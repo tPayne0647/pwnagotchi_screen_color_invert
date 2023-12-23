@@ -20,6 +20,7 @@ log() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" >> "$log_file"
 }
 
+log "--------------------"
 log "🟢 Script started 🟢"
 log "--------------------"
 
@@ -55,5 +56,6 @@ touch /root/.pwnagotchi-auto && systemctl restart pwnagotchi
 log "Pwnagotchi service restarted."
 
 # Log script completion
+log "---------------------"
 log "🏁 Script finished 🏁"
 log "---------------------"
