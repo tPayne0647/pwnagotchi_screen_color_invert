@@ -20,6 +20,9 @@ log() {
     echo "$(date '+%Y-%m-%d %H:%M:%S') - $1" >> "$log_file"
 }
 
+# Determine script start time
+start_time=$(date +%s)
+
 log "--------------------"
 log "🟢 Script started 🟢"
 log "--------------------"
@@ -55,7 +58,12 @@ fi
 touch /root/.pwnagotchi-auto && systemctl restart pwnagotchi
 log "Pwnagotchi service restarted."
 
-# Log script completion
+# Determine script end time and calculate duration
+end_time=$(date +%s)
+duration=$((end_time - start_time))
+
+# Log script completion and duration
 log "---------------------"
 log "🏁 Script finished 🏁"
+log "Script duration: ${duration} seconds"
 log "---------------------"
