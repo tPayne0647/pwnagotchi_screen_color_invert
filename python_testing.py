@@ -33,7 +33,7 @@ client = PiSugarClient()
 
 # # Set single press action
 # print("Setting single press action...")
-# response = client.send_command("set_button_shell single /home/pi/script.sh")
+# response = client.send_command("set_button_shell single sudo /home/pi/pwnagotchi_screen_color_invert/invert_colors.sh")
 # print(response)
 
 # Enable double press
@@ -43,7 +43,7 @@ print(response)
 
 # Set double press action
 print("Setting double press action...")
-response = client.send_command("set_button_shell double /home/pi/script.sh")
+response = client.send_command("set_button_shell double sudo /home/pi/pwnagotchi_screen_color_invert/invert_colors.sh")
 print(response)
 
 # # Enable long press
@@ -53,5 +53,5 @@ print(response)
 
 # # Set long press action
 # print("Setting long press action...")
-# response = client.send_command("set_button_shell long /home/pi/script.sh")
+# response = client.send_command("set_button_shell long sudo /home/pi/pwnagotchi_screen_color_invert/invert_colors.sh")
 # print(response)
