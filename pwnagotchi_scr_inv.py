@@ -1,6 +1,6 @@
 import subprocess
 
-def send_pisugar_command(command, host="10.0.0.2", port=8421):
+def send_pisugar_command(command, host="127.0.0.1", port=8421):
     # Construct the command to send to the PiSugar server
     full_command = f"echo '{command}' | nc {host} {port}"
     # Execute the command
