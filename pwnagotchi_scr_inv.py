@@ -1,35 +1,22 @@
-import subprocess
+import socket
 
-def send_pisugar_command(command, host="127.0.0.1", port=8421):
-    # Construct the command to send to the PiSugar server
-    full_command = f"echo '{command}' | nc {host} {port}"
-    # Execute the command
-    result = subprocess.run(
-    full_command,
-    shell=True,
-    stdout=subprocess.PIPE,
-    stderr=subprocess.PIPE,
-    text=True,
-    check=True
-)
-
-
-    # Check for errors
-    if result.returncode != 0:
-        print(f"Error: {result.stderr}")
+def send_pisugar_command_uds(command, socket_path="/tmp/pisugar-server.sock"):
+    try:
+        with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as sock:
+            sock.connect(socket_path)
+            sock.sendall(command.encode() + b'\n')
+            response = sock.recv(1024)
+            return response.decode().strip()
+    except socket.error as e:
+        print(f"Socket error: {e}")
         return None
-    else:
-        return result.stdout
 
-# # Enable double press
-# send_pisugar_command("set_button_enable double 1")
-
-# # Set action for double press
-# send_pisugar_command("set_button_shell double sudo /home/pi/pwnagotchi_screen_color_invert/invert_colors.sh")
-
-# Enable and set the double press button
-enable_response = send_pisugar_command("set_button_enable double 1")
+# Example usage
+# Enable the double press button
+enable_response = send_pisugar_command_uds("set_button_enable double 1")
 print(enable_response)
 
-set_shell_response = send_pisugar_command("set_button_shell double sudo /home/pi/pwnagotchi_screen_color_invert/invert_colors.sh")
+# Set the action for the double press button
+# Replace the path with the actual path to your script
+set_shell_response = send_pisugar_command_uds("set_button_shell double sudo /home/pi/pwnagotchi_screen_color_invert/invert_colors.sh")
 print(set_shell_response)
