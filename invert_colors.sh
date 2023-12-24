@@ -63,7 +63,7 @@ duration=$((end_time - start_time))
 duration_sec=$(echo "scale=3; $duration / 1000000000" | bc)
 
 # Log script completion and duration
-log "---------------------"
-log "🏁 Script finished 🏁"
-log "Script duration: ${duration_sec} seconds"
-log "---------------------"
+log "------------------------------------------------"
+log "🏁 Script finished in ${duration_sec} seconds 🏁"
+log "------------------------------------------------"
+
