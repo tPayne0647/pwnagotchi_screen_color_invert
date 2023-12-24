@@ -66,4 +66,3 @@ duration_sec=$(echo "scale=3; $duration / 1000000000" | bc)
 log "------------------------------------------------"
 log "🏁 Script finished in ${duration_sec} seconds 🏁"
 log "------------------------------------------------"
-
