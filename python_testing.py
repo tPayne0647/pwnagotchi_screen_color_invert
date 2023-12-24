@@ -58,10 +58,10 @@ print(response)
 # response = client.send_command("set_button_shell single sudo /home/pi/pwnagotchi_screen_color_invert/invert_colors.sh")
 # print(response)
 
-# # Disable double press
-print("Disabling double press...")
-response = client.send_command("set_button_enable double 0")
-print(response)
+# # # Disable double press
+# print("Disabling double press...")
+# response = client.send_command("set_button_enable double 0")
+# print(response)
 
 # Enable double press
 print("Enabling double press...")
@@ -73,10 +73,10 @@ print("Setting double press action...")
 response = client.send_command("set_button_shell double sudo /home/pi/pwnagotchi_screen_color_invert/invert_colors.sh")
 print(response)
 
-# # Disable long press
-print("Disabling long press...")
-response = client.send_command("set_button_enable long 0")
-print(response)
+# # # Disable long press
+# print("Disabling long press...")
+# response = client.send_command("set_button_enable long 0")
+# print(response)
 
 # # Enable long press
 # print("Enabling long press...")
