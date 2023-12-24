@@ -4,7 +4,6 @@ import logging
 logger = logging.getLogger(__name__)
 
 class PiSugarClient:
-
     def __init__(self, socket_path="/tmp/pisugar-server.sock"):
         self.socket_path = socket_path
 
@@ -13,15 +12,33 @@ class PiSugarClient:
             with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as sock:
                 logger.info("Connecting to %s", self.socket_path)
                 sock.connect(self.socket_path)
-                # Existing socket logic
-                logger.info("Sending command: %s", command)
+
+                # Clear existing socket data
+                sock.settimeout(0.1)
+                logger.info("Clearing socket")
+
+                try:
+                    while True:
+                        data = sock.recv(1024)
+                        if not data:
+                            break
+                        logger.debug("Cleared: %s", data)
+                except socket.timeout:
+                    logger.info("Socket clear")
+
+                # Send command
+                logger.info("Sending: %s", command)
                 sock.sendall(command.encode() + b'\n')
+
+                # Get response
                 response = sock.recv(1024)
-                logger.info("Received response: %s", response.decode())
+                logger.info("Received: %s", response.decode())
+
                 return response.decode()
         except socket.error as e:
             logger.error("Command failed: %s", e)
             return None
+
 client = PiSugarClient()
 
 # TESTING
