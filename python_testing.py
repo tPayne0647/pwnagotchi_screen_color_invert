@@ -1,16 +1,21 @@
 import socket
 import logging
 
+# Setting up a logger for logging information and errors
 logger = logging.getLogger(__name__)
 
 class PiSugarClient:
     def __init__(self, socket_path="/tmp/pisugar-server.sock"):
+        # Initialize the PiSugarClient with a default socket path
         self.socket_path = socket_path
 
     def send_command(self, command):
+        # Method to send a command to the PiSugar server
         try:
+            # Creating a UNIX socket
             with socket.socket(socket.AF_UNIX, socket.SOCK_STREAM) as sock:
                 logger.info("Connecting to %s", self.socket_path)
+                # Connect to the server using the socket path
                 sock.connect(self.socket_path)
 
                 # Clear existing socket data
@@ -24,6 +29,7 @@ class PiSugarClient:
                             break
                         logger.debug("Cleared: %s", data)
                 except socket.timeout:
+                    # Log when socket is cleared
                     logger.info("Socket clear")
 
                 # Send command
@@ -36,17 +42,19 @@ class PiSugarClient:
 
                 return response.decode()
         except socket.error as e:
+            # Log any socket errors
             logger.error("Command failed: %s", e)
             return None
 
+# Create an instance of PiSugarClient
 client = PiSugarClient()
 
 # TESTING
 
 # # Disable single press
-print("Disabling single press...")
-response = client.send_command("set_button_enable single 0")
-print(response)
+# print("Disabling single press...")
+# response = client.send_command("set_button_enable single 0")
+# print(response)
 
 # # Enable single press
 # print("Enabling single press...")
@@ -58,7 +66,7 @@ print(response)
 # response = client.send_command("set_button_shell single sudo /home/pi/pwnagotchi_screen_color_invert/invert_colors.sh")
 # print(response)
 
-# # # Disable double press
+# Disable double press
 # print("Disabling double press...")
 # response = client.send_command("set_button_enable double 0")
 # print(response)
@@ -73,7 +81,7 @@ print("Setting double press action...")
 response = client.send_command("set_button_shell double sudo /home/pi/pwnagotchi_screen_color_invert/invert_colors.sh")
 print(response)
 
-# # # Disable long press
+# # Disable long press
 # print("Disabling long press...")
 # response = client.send_command("set_button_enable long 0")
 # print(response)
