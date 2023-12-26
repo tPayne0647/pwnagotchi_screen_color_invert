@@ -67,9 +67,9 @@ client = PiSugarClient()
 # print(response)
 
 # Disable double press
-print("Disabling double press...")
-response = client.send_command("set_button_enable double 0")
-print(response)
+# print("Disabling double press...")
+# response = client.send_command("set_button_enable double 0")
+# print(response)
 
 # Enable double press
 print("Enabling double press...")
