@@ -53,33 +53,19 @@ class ScreenInvertPlugin(plugins.Plugin):
         super().__init__()
         self.selected_button = 'double'  # Default button
         self.menu = ['single', 'double', 'long']
-        # self.script_url = "https://github.com/tPayne0647/pwnagotchi_screen_color_invert/raw/main/invert_colors.sh"
-        # self.script_path = "/home/pi/pwnagotchi_screen_color_invert/scripts/invert_colors.sh"
+        self.script_path = "/home/pi/pwnagotchi_screen_color_invert/scripts/invert_colors.sh"
         logger.debug("ScreenInvertPlugin initialized.")
-        # self.download_script()
 
     def on_loaded(self):
         try:
             self._log("ScreenInvertPlugin loaded")
+            # Check if the script exists
+            if not os.path.exists(self.script_path):
+                self._log(f"Script not found at {self.script_path}")
+            else:
+                self._log("Script found. Ready to execute.")
         except Exception as e:
             self._log(f"Error in on_loaded: {e}")
-
-    # def download_script(self):
-    #     logger.debug(f"Attempting to download script from {self.script_url}")
-    #     if not os.path.exists(self.script_path):
-    #         try:
-    #             response = requests.get(self.script_url)
-    #             if response.status_code == 200:
-    #                 with open(self.script_path, 'wb') as file:
-    #                     file.write(response.content)
-    #                     os.chmod(self.script_path, 0o755)
-    #                 self._log("Script downloaded successfully.")
-    #             else:
-    #                 self._log(f"Failed to download script. Status code: {response.status_code}")
-    #         except Exception as e:
-    #             self._log(f"Error downloading script: {e}")
-    #     else:
-    #         logger.debug("Script already exists, no need to download.")
 
     def apply_button_action(self):
         logger.debug("Applying button action.")
