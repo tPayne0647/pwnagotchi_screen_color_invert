@@ -1,7 +1,6 @@
 # This does not work, enabling this plugin will result in bootlooping. Need help troubleshooting this.
 
 import os
-import requests
 import socket
 import logging
 import pwnagotchi.plugins as plugins
