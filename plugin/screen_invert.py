@@ -52,17 +52,19 @@ class ScreenInvertPlugin(plugins.Plugin):
         super().__init__()
         self.selected_button = 'double'  # Default button
         self.menu = ['single', 'double', 'long']
-        self.script_path = "/home/pi/pwnagotchi_screen_color_invert/scripts/invert_colors.sh"
+        self.script_path = "/home/pi/pwnagotchi_screen_color_invert/script/invert_colors.sh"
+        self.ready = False
         logger.debug("ScreenInvertPlugin initialized.")
 
     def on_loaded(self):
         try:
             self._log("ScreenInvertPlugin loaded")
-            # Check if the script exists
-            if not os.path.exists(self.script_path):
-                self._log(f"Script not found at {self.script_path}")
+            if os.path.exists(self.script_path) and os.access(self.script_path, os.X_OK):
+                self._log("Script found and is executable. Ready to execute.")
+                self.ready = True
             else:
-                self._log("Script found. Ready to execute.")
+                self._log(f"Script not found or not executable at {self.script_path}")
+                self.ready = False
         except Exception as e:
             self._log(f"Error in on_loaded: {e}")
 
