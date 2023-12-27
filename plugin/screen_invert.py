@@ -90,14 +90,14 @@ class ScreenInvertPlugin(plugins.Plugin):
 
     def on_webhook(self, path, request):
         logger.debug(f"Webhook called with path: {path}")
-        if path == "/screeninvert":
+        if path == "/screen_invert":
             if request.method == 'GET':
                 logger.debug("Handling GET request.")
                 return self.render_form()
             elif request.method == 'POST':
                 logger.debug("Handling POST request.")
                 self.process_form(request.POST)
-                return web.HTTPFound('/plugins/screeninvert')
+                return web.HTTPFound('/plugins/screen_invert')
         else:
             logger.warning(f"Unknown path in webhook: {path}")
             return web.Response(status=404, text="Not Found")
@@ -105,7 +105,7 @@ class ScreenInvertPlugin(plugins.Plugin):
     def render_form(self):
         logger.debug("Rendering form.")
         html = '<html><body>'
-        html += '<form action="/plugins/screeninvert" method="post">'
+        html += '<form action="/plugins/screen_invert" method="post">'
         html += '<select name="button_action">'
         for action in self.menu:
             selected = ' selected' if action == self.selected_button else ''
