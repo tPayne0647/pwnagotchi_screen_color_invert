@@ -1,7 +1,6 @@
 # This does not work, enabling this plugin will result in bootlooping. Need help troubleshooting this.
 
 import os
-import socket
 import logging
 import pwnagotchi.plugins as plugins
 import pwnagotchi.ui.web as web
@@ -25,10 +24,10 @@ class ScreenInvertPlugin(plugins.Plugin):
                 logger.info("Script found and is executable.")
                 self.ready = True
             else:
-                logger.warning(f"Script not found or not executable at {self.script_path}")
+                logger.warning("Script not found or not executable at %s", self.script_path)
                 self.ready = False
         except Exception as e:
-            logger.error(f"Error in on_loaded: {e}")
+            logger.error("Error in on_loaded: %s", e)
 
     def apply_button_action(self):
         logger.debug("Applying button action...")
@@ -36,22 +35,22 @@ class ScreenInvertPlugin(plugins.Plugin):
 
         for button in self.menu:
             clear_command = f"set_button_enable {button} 0"
-            logger.debug(f"Clearing action for button: {button}")
+            logger.debug("Clearing action for button: %s", button)
             pi_sugar_client.send_command(clear_command)
 
         enable_command = f"set_button_enable {self.selected_button} 1"
         action_command = f"set_button_shell {self.selected_button} sudo {self.script_path}"
-        logger.debug(f"Setting action for button: {self.selected_button}")
+        logger.debug("Setting action for button: %s", self.selected_button)
 
         try:
             pi_sugar_client.send_command(enable_command)
             pi_sugar_client.send_command(action_command)
-            logger.info(f"Action applied for button: {self.selected_button}")
+            logger.info("Action applied for button: %s", self.selected_button)
         except Exception as e:
-            logger.error(f"Error applying button action: {e}")
+            logger.error("Error applying button action: %s", e)
 
     def on_webhook(self, path, request):
-        logger.debug(f"Webhook called with path: {path}")
+        logger.debug("Webhook called with path: %s", path)
         if path == "/screen_invert":
             if request.method == 'GET':
                 logger.debug("Handling GET request.")
@@ -61,7 +60,7 @@ class ScreenInvertPlugin(plugins.Plugin):
                 self.process_form(request.POST)
                 return web.HTTPFound('/plugins/screen_invert')
         else:
-            logger.warning(f"Unknown path in webhook: {path}")
+            logger.warning("Unknown path in webhook: %s", path)
             return web.Response(status=404, text="Not Found")
 
     def render_form(self):
@@ -79,9 +78,9 @@ class ScreenInvertPlugin(plugins.Plugin):
         return web.Response(text=html, content_type='text/html')
 
     def process_form(self, form_data):
-        logger.debug(f"Processing form data: {form_data}")
+        logger.debug("Processing form data: %s", form_data)
         self.selected_button = form_data.get('button_action')
         self.apply_button_action()
 
     def _log(self, message):
-        logging.info(f"[ScreenInvertPlugin] {message}")
+        logging.info("[ScreenInvertPlugin] %s", message)
