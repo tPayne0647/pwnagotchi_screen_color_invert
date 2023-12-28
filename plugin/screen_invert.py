@@ -9,7 +9,7 @@ import pwnagotchi.plugins as plugins
 import pwnagotchi.ui.web as web
 
 home_dir = Path.home()
-client_path = home_dir / 'pwnagotchi_screen_color_invert/client'
+client_path = home_dir / '~/pwnagotchi_screen_color_invert/client'
 sys.path.insert(0, str(client_path))
 from screen_invert import PiSugarClient
 sys.path.remove(str(client_path))
