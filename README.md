@@ -3,6 +3,8 @@
 ## Overview
 This repository contains a Bash script designed for Pwnagotchi devices equipped with a Waveshare V3 screen and a PiSugar 2 or 3 battery. This script enables users to invert the screen colors of their Pwnagotchi, on the go, by pressing or holding the *custom* button on the PiSugar battery.
 
+- Currently working on turning this into an actual plugin with a web interface so all the user has to do is install the plugin. Double press will be selected by default. This will be able to be changed by logging into the pwnagotchi web ui, clicking on the plugin, and selecting the desired button press on a simple menu. Each time a new button press is selected, the previous selection should be cleared from the PiSugar server. This is my first attempt at developing a plugin, so any help would be greatly appreciated!
+
 ## Prerequisites
 - Configured Pwnagotchi device
 - Waveshare V3 screen  (Needs to be tested on V2)
