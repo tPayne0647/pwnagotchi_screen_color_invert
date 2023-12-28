@@ -1,6 +1,7 @@
-# This does not work, enabling this plugin will result in bootlooping. Need help troubleshooting this.
+# This does not work, enabling this plugin will result in boot looping.
+# Need help troubleshooting this.
 
-import os
+from pathlib import Path
 import logging
 import pwnagotchi.plugins as plugins
 import pwnagotchi.ui.web as web
@@ -13,14 +14,14 @@ class ScreenInvertPlugin(plugins.Plugin):
         super().__init__()
         self.selected_button = 'double'
         self.menu = ['single', 'double', 'long']
-        self.script_path = "/home/pi/pwnagotchi_screen_color_invert/script/invert_colors.sh"
+        self.script_path = Path("/home/pi/pwnagotchi_screen_color_invert/script/invert_colors.sh")
         self.ready = False
         logger.debug("ScreenInvertPlugin initialized.")
 
     def on_loaded(self):
         logger.debug("on_loaded called for ScreenInvertPlugin.")
         try:
-            if os.path.exists(self.script_path) and os.access(self.script_path, os.X_OK):
+            if self.script_path.exists() and self.script_path.is_file():
                 logger.info("Script found and is executable.")
                 self.ready = True
             else:
